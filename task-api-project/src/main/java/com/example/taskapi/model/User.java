@@ -1,11 +1,11 @@
 package com.example.taskapi.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+@Entity
 @Data
-@Document(collection = "users")
 public class User {
 
     @Id

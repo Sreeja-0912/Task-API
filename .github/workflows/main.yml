@@ -18,4 +18,4 @@ jobs:
           distribution: 'temurin'
 
       - name: Build
-        run: mvn clean install
+        run: cd task-api-project && mvn clean install

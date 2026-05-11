@@ -1,22 +1,21 @@
-package com.example.taskapi.config;
+name: Java CI
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.web.SecurityFilterChain;
+on:
+  push:
+    branches: [ "main" ]
 
-@Configuration
-public class SecurityConfig {
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    steps:
+      - uses: actions/checkout@v3
 
-        http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
-                );
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-        return http.build();
-    }
-}
+      - name: Build
+        run: mvn clean install
